@@ -9,6 +9,9 @@
 // npx prisma generate - to generate the prisma client
 // npx primsa db push - to push the schema to the database
 
+
+// npx prisma studio - to open the prisma studio
+
 datasource db {
   provider = "cockroachdb"
   url      = env("DATABASE_URL")
