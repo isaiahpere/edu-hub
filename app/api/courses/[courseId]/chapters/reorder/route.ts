@@ -35,7 +35,7 @@ export async function PUT(
 
     return new NextResponse("Items update successfully", { status: 200 });
   } catch (error) {
-    console.log("CHAPTERS_REORDER_ERROR", error);
+    console.log("[CHAPTERS_REORDER_ERROR]", error);
     return new NextResponse("Internal Server Error", { status: 500 });
   }
 }

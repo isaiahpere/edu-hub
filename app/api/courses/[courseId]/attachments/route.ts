@@ -37,7 +37,7 @@ export async function POST(
 
     return NextResponse.json(attachment);
   } catch (error) {
-    console.log("COURSE_ID_ATTACHMENTS", error);
+    console.log("[COURSE_ID_ATTACHMENTS]", error);
     return new NextResponse("Internal error", { status: 500 });
   }
 }

@@ -62,8 +62,6 @@ export const ChaptersList = ({
       position: items.findIndex((item) => item.id === chapter.id),
     }));
 
-    console.log(bulkUpdateData);
-
     onReorder(bulkUpdateData);
   };
 
