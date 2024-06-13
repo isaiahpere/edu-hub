@@ -81,4 +81,9 @@ body,
   }
 }
 
+/* Chapter Description style override */
+.ql-container {
+  font-size: 0.875rem !important;
+}
+
 @import "~@uploadthing/react/styles.css";
