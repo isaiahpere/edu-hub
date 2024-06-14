@@ -65,6 +65,7 @@ export const ChaptersList = ({
     onReorder(bulkUpdateData);
   };
 
+  // prevent hydration issues
   if (!isMounted) return null;
 
   return (
