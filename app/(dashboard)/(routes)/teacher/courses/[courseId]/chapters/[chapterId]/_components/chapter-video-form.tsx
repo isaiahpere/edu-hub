@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Pencil, PlusCircle, VideoIcon } from "lucide-react";
+import MuxPlayer from "@mux/mux-player-react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import * as z from "zod";
@@ -73,7 +73,9 @@ const ChapterVideoForm = ({
             <VideoIcon className="h-10 w-10 text-slate-500" />
           </div>
         ) : (
-          <div className="relative aspect-video mt-2">Video Uploaded</div>
+          <div className="relative aspect-video mt-2">
+            <MuxPlayer playbackId={initialData?.muxData?.playbackId} />
+          </div>
         ))}
 
       {isEditing && (
