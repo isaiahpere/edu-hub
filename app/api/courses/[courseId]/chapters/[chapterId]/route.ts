@@ -10,9 +10,9 @@ const muxTokenSecret = process.env.MUX_TOKEN_SECRET!;
 // Mux Instance
 const { video } = new Mux({ tokenId: muxTokenId, tokenSecret: muxTokenSecret });
 
-/**
+/******************
  * DELETE CHAPTER
- */
+ ******************/
 export async function DELETE(
   req: Request,
   { params }: { params: { courseId: string; chapterId: string } }
@@ -50,7 +50,7 @@ export async function DELETE(
         await video.assets.delete(exisitngMuxData.assetId);
         await db.muxData.delete({
           where: {
-            id: exisitngMuxData.id,
+            chapterId: exisitngMuxData.id,
           },
         });
       }
@@ -89,9 +89,9 @@ export async function DELETE(
   }
 }
 
-/**
+/******************
  * UPDATE CHAPTER
- */
+ ******************/
 export async function PATCH(
   req: Request,
   { params }: { params: { courseId: string; chapterId: string } }
@@ -158,8 +158,6 @@ export async function PATCH(
         },
       });
     }
-
-    debugger;
     return NextResponse.json(chapter);
   } catch (error) {
     console.log("[CHAPTER_ERROR]", error);

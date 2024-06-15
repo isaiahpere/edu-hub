@@ -30,11 +30,34 @@ const ChapterActions = ({
       await axios.delete(`/api/courses/${courseId}/chapters/${chapterId}`);
       toast.success("Chapter deleted!");
       router.push(`/teacher/courses/${courseId}`);
+      router.refresh();
     } catch (error) {
       toast.error("Something went wrong!");
     } finally {
       setIsLoading(false);
       router.refresh();
+    }
+  };
+
+  const onClick = async () => {
+    try {
+      setIsLoading(true);
+
+      if (isPublished) {
+        await axios.patch(
+          `/api/courses/${courseId}/chapters/${chapterId}/unpusblish`
+        );
+        toast.success("Chapter unpublished!");
+      } else {
+        await axios.patch(
+          `/api/courses/${courseId}/chapters/${chapterId}/publish`
+        );
+        toast.success("Chapter plublished");
+      }
+    } catch (error) {
+      toast.error("Somethign went wrong.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -44,7 +67,7 @@ const ChapterActions = ({
         disabled={disabled || isLoading}
         variant={"outline"}
         size={"sm"}
-        onClick={() => {}}
+        onClick={onClick}
       >
         {isPublished ? "Unpublish" : "Publish"}
       </Button>
