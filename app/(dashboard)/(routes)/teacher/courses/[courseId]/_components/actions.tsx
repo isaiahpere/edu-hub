@@ -3,10 +3,11 @@ import { Trash } from "lucide-react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import axios from "axios";
 
 import { Button } from "@/components/ui/button";
+import { useConfettiStore } from "@/hooks/use-confetti-store";
 import ConfirmModal from "@/components/modals/confirm-modal";
-import axios from "axios";
 
 interface ActionsProps {
   disabled: boolean;
@@ -15,6 +16,7 @@ interface ActionsProps {
 }
 const Actions = ({ courseId, disabled, isPublished }: ActionsProps) => {
   const [isLoading, setIsLoading] = useState(false);
+  const confetti = useConfettiStore();
   const router = useRouter();
 
   const onDelete = async () => {
@@ -42,6 +44,7 @@ const Actions = ({ courseId, disabled, isPublished }: ActionsProps) => {
       } else {
         await axios.patch(`/api/courses/${courseId}/publish`);
         toast.success("Course plublished");
+        confetti.onOpen();
       }
     } catch (error) {
       toast.error("Somethign went wrong.");
