@@ -5,11 +5,16 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 // ----- IMPORTANT ------
-// after any changes update the schema in the DB
+
+// UDPATE SCHEMA CHANGES TO PRISMA DB 
 // npx prisma generate - to generate the prisma client
 // npx prisma db push - to push the schema to the database
 
+// RESET DB
+// npx prisma migrate reset - resets the database
+// npx prisma db push - push new reset prisma
 
+// PRISMA STUDIO
 // npx prisma studio - to open the prisma studio
 
 datasource db {
