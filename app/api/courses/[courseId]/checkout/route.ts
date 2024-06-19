@@ -31,6 +31,7 @@ export async function POST(
       },
     });
 
+    // if already purchase return
     if (purchase) {
       return new NextResponse("Already Purchase", { status: 400 });
     }
@@ -38,6 +39,7 @@ export async function POST(
       return new NextResponse("Course not found", { status: 404 });
     }
 
+    // checkout line items setup
     const line_items: Stripe.Checkout.SessionCreateParams.LineItem[] = [
       {
         quantity: 1,
@@ -52,6 +54,7 @@ export async function POST(
       },
     ];
 
+    // check if customer exist
     let stripeCustomer = await db.customer.findUnique({
       where: {
         id: user.id,
@@ -60,6 +63,7 @@ export async function POST(
         stripeCustomerId: true,
       },
     });
+
     // first time customer - need to create customer
     if (!stripeCustomer) {
       const customer = await stripe.customers.create({
@@ -74,12 +78,14 @@ export async function POST(
       });
     }
 
+    // stripe session creation
     const session = await stripe.checkout.sessions.create({
       customer: stripeCustomer.stripeCustomerId,
       line_items,
       mode: "payment",
       success_url: `${process.env.NEXT_PUBLIC_APP_URL}/courses/${course.id}?success=1`,
       cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/courses/${course.id}?cancel=1`,
+      // metadata is used in webhook thrown by stripe
       metadata: {
         courseId: course.id,
         userId: user.id,
