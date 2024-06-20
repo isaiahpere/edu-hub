@@ -12,7 +12,6 @@ import { stripe } from "@/lib/stripe";
  * Note: Do not return too many status: 400 in response as webhook will be disconnected
  * by stripe.
  *
- *
  * Webhook Instructions:
  * https://dashboard.stripe.com/test/webhooks/create?endpoint_location=local
  */

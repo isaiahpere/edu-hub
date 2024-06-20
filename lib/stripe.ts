@@ -6,8 +6,8 @@ import Stripe from "stripe";
  * Login to stripe via CLI
  * 1) stripe login
  *
- * listen on your port running local app
- * 2) stripe listen --forward-to http:localhost:3000
+ * listen on your port running local app (MUST BE RUNNING FOR WEBHOOK TO WORK)
+ * 2) stripe listen --forward-to localhost:3000/api/webhook
  *
  * FOR LOCAL ENV ONLY
  * You need to run the Stripe CLI to listen to the events
