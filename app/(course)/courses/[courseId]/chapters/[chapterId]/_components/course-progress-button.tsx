@@ -62,10 +62,12 @@ const CourseProgressButton = ({
       onClick={onClick}
       disabled={isLoading}
     >
-      {isCompleted ? "Not completed" : "Mark as complete"}{" "}
+      {isCompleted ? "Not completed" : "Mark as complete"}
       <Icon className="w-4 h-4 ml-2" />
     </Button>
   );
 };
 
 export default CourseProgressButton;
+
+// Stopped at 22:39mins
